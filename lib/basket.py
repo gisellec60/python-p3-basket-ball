@@ -182,6 +182,7 @@ def game_dict():
             ]
         }
     }
+
 def num_points_per_game(player_name):
     games=["home","away"]
     for game in games:
@@ -189,82 +190,10 @@ def num_points_per_game(player_name):
         for obj in game_dict()[game]['players']: 
             for value in obj.values():
                  if value == player_name:
+                    print(value, player_name)
                     points=game_dict()[game]['players'][index]["points_per_game"]
+                    print(index, game)      
             index=index+1    
     return points 
-
-
-def player_age(player_name):
-    games=["home","away"]
-    for game in games:
-        index=0 
-        for obj in game_dict()[game]['players']: 
-            for value in obj.values():
-                 if value == player_name:
-                    age=game_dict()[game]['players'][index]["age"]  
-            index=index+1    
-    return age 
-
-def team_colors(team_name):
-    games=["home","away"]
-    for game in games:
-        for item in game_dict()[game].values():
-            if item == team_name:
-                color=game_dict()[game]["colors"]
-    return color
-
-def team_names():
-    teams=[]
-    games=["home","away"]
-    for game in games:
-        for key, value in game_dict()[game].items():
-            if (key == "team_name"):
-                teams.append(value)
-    return teams            
-
-def player_numbers(team_name):
-    numbers=[]
-    games=["home","away"]
-    for game in games:
-        for item in game_dict()[game].values():
-            if item == team_name:
-                for num in game_dict()[game]["players"]:
-                    numbers.append(num["number"])
-    return numbers
-
-def player_stats(player_name):
-    games=["home","away"]
-    for game in games:
-        for obj in game_dict()[game]['players']: 
-            for value in obj.values():
-                 if value == player_name:
-                     return obj
-                 
-def average_rebounds_by_shoe_brand():
-    games=["home","away"]
-    shoe_stats={}
-    shoelist=[]
-    for game in games:
-        for obj in game_dict()[game]['players']: 
-            shoelist.append(obj["rebounds_per_game"])
-            if (shoe_stats.get(obj["shoe_brand"]) == None):
-                shoe_stats[obj["shoe_brand"]] = shoelist
-            else:
-                for key,value in shoe_stats.items():
-                    if (key == obj["shoe_brand"]):
-                        value.append(obj["rebounds_per_game"])
-                        
-            shoelist=[]
-    for key,value in shoe_stats.items():
-        # print(key, value)
-        total=0
-        avg=0
-        for score in value:
-            # print(key, score)
-            total=total + score  
-            # print("this is total:", total) 
-        # avg=round(total/len(value),2) 
-        avg=round(total/len(value),2)
-        print(key + ": " , format(avg, '.2f'))
-    # return shoe_stats
-
+   
+print(num_points_per_game("Kristaps Porzingis"))
